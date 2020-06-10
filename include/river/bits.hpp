@@ -70,11 +70,6 @@ struct Bits {
   }
 };
 
-template <unsigned_integral T>
-constexpr auto bits(T raw) noexcept -> Bits<T> {
-  return raw;
-}
-
 template <unsigned_integral T, T target_mask>
 struct MaskedBits : Bits<T> {
   static constexpr Bits<T> mask = target_mask;
@@ -84,7 +79,7 @@ struct MaskedBits : Bits<T> {
   constexpr auto set(T source) const noexcept -> Bits<T> {
     auto const self = *this;
 
-    return bits(source) & ~mask | self & mask;
+    return Bits(source) & ~mask | self & mask;
   }
 
   static constexpr auto masked_value(Bits<T> source) noexcept -> Bits<T> {

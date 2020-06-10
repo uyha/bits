@@ -7,10 +7,10 @@
 
 #include <river/bits.hpp>
 
-auto const bits_8  = river::bits::bits(std::numeric_limits<std::uint8_t>::max());
-auto const bits_16 = river::bits::bits(std::numeric_limits<std::uint16_t>::max());
-auto const bits_32 = river::bits::bits(std::numeric_limits<std::uint32_t>::max());
-auto const bits_64 = river::bits::bits(std::numeric_limits<std::uint64_t>::max());
+auto const bits_8  = river::bits::Bits(std::numeric_limits<std::uint8_t>::max());
+auto const bits_16 = river::bits::Bits(std::numeric_limits<std::uint16_t>::max());
+auto const bits_32 = river::bits::Bits(std::numeric_limits<std::uint32_t>::max());
+auto const bits_64 = river::bits::Bits(std::numeric_limits<std::uint64_t>::max());
 
 TEST_CASE("Test expand type trait") {
   using namespace river::bits::details;
@@ -73,29 +73,29 @@ TEST_CASE("Compile time shifting") {
 TEST_CASE("Run time operators") {
   using namespace river::bits;
   SECTION("Equal") {
-    CHECK(bits(0b10u) == bits(0b10u));
+    CHECK(Bits(0b10u) == Bits(0b10u));
   }
   SECTION("Left shift") {
-    CHECK(bits(0b10u) == Bits<std::uint8_t>{1} << 1);
+    CHECK(Bits(0b10u) == Bits<std::uint8_t>{1} << 1);
   }
 
   SECTION("Right shift") {
     CHECK(std::is_same_v<Bits<std::uint8_t>, decltype(Bits<std::uint8_t>{1} << 1)>);
-    CHECK(bits(0b10u) == Bits<std::uint8_t>{1} << 1);
+    CHECK(Bits(0b10u) == Bits<std::uint8_t>{1} << 1);
   }
 
   SECTION("And") {
-    CHECK(std::is_same_v<Bits<std::uint32_t>, decltype(Bits<std::uint8_t>{0b10u} & bits(0b1u))>);
-    CHECK(bits(0b00u) == (Bits<std::uint8_t>{0b10u} & bits(0b1u)));
+    CHECK(std::is_same_v<Bits<std::uint32_t>, decltype(Bits<std::uint8_t>{0b10u} & Bits(0b1u))>);
+    CHECK(Bits(0b00u) == (Bits<std::uint8_t>{0b10u} & Bits(0b1u)));
   }
 
   SECTION("Or") {
-    CHECK(std::is_same_v<Bits<std::uint32_t>, decltype(Bits<std::uint8_t>{0b10u} | bits(0b1u))>);
-    CHECK(bits(0b11u) == (Bits<std::uint8_t>{0b10u} | bits(0b1u)));
+    CHECK(std::is_same_v<Bits<std::uint32_t>, decltype(Bits<std::uint8_t>{0b10u} | Bits(0b1u))>);
+    CHECK(Bits(0b11u) == (Bits<std::uint8_t>{0b10u} | Bits(0b1u)));
   }
 
   SECTION("XOR") {
-    CHECK(std::is_same_v<Bits<std::uint32_t>, decltype(Bits<std::uint8_t>{0b101u} ^ bits(0b001u))>);
-    CHECK(bits(0b100u) == (Bits<std::uint8_t>{0b101u} ^ bits(0b001u)));
+    CHECK(std::is_same_v<Bits<std::uint32_t>, decltype(Bits<std::uint8_t>{0b101u} ^ Bits(0b001u))>);
+    CHECK(Bits(0b100u) == (Bits<std::uint8_t>{0b101u} ^ Bits(0b001u)));
   }
 }
