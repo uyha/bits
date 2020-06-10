@@ -79,6 +79,8 @@ template <unsigned_integral T, T target_mask>
 struct MaskedBits : Bits<T> {
   static constexpr Bits<T> mask = target_mask;
 
+  using Bits<T>::Bits;
+
   constexpr auto set(T source) const noexcept -> Bits<T> {
     auto const self = *this;
 
