@@ -66,7 +66,19 @@ struct Bits {
   }
   template <std::size_t bit>
   constexpr auto rsh() const noexcept -> Bits<T> {
-    return T{value >> bit};
+    return T(value >> bit);
+  }
+  template <T mask>
+  constexpr auto bit_and() const noexcept -> Bits<T> {
+    return T(value & mask);
+  }
+  template <T mask>
+  constexpr auto bit_or() const noexcept -> Bits<T> {
+    return T(value | mask);
+  }
+  template <T mask>
+  constexpr auto bit_xor() const noexcept -> Bits<T> {
+    return T(value ^ mask);
   }
 };
 
