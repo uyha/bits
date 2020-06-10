@@ -1,0 +1,13 @@
+﻿Language: Cpp
+BasedOnStyle: LLVM
+AlignConsecutiveAssignments: true
+AlignOperands: true
+AllowShortFunctionsOnASingleLine: Empty
+AlwaysBreakTemplateDeclarations: Yes
+BinPackArguments: false
+BinPackParameters: false
+BreakConstructorInitializers: BeforeComma
+BreakInheritanceList: BeforeComma
+ColumnLimit: 100
+IncludeBlocks: Regroup
+KeepEmptyLinesAtTheStartOfBlocks: false
