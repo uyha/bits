@@ -70,6 +70,11 @@ struct Bits {
   }
 };
 template <unsigned_integral T>
+constexpr auto operator~(Bits<T> bits) noexcept -> Bits<T> {
+  return ~bits.raw;
+}
+
+template <unsigned_integral T>
 constexpr auto operator<<(Bits<T> bits, std::size_t shift) noexcept -> Bits<T> {
   return T(bits.raw << shift);
 }
