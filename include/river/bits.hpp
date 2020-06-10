@@ -84,6 +84,10 @@ struct MaskedBits : Bits<T> {
 
     return bits(source) & ~mask | self;
   }
+
+  static constexpr auto masked_value(T source) noexcept -> Bits<T> {
+    return bits(source) & mask;
+  }
 };
 
 template <unsigned_integral T>
