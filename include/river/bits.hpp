@@ -86,17 +86,17 @@ constexpr auto operator>>(Bits<T> bits, std::size_t shift) noexcept -> Bits<T> {
 template <unsigned_integral T1, unsigned_integral T2>
 constexpr auto operator&(Bits<T1> lhs, Bits<T2> rhs) noexcept -> Bits<details::larger_t<T1, T2>> {
   using result_type = details::larger_t<T1, T2>;
-  return result_type{lhs.raw & rhs.raw};
+  return static_cast<result_type>(lhs.raw & rhs.raw);
 }
 template <unsigned_integral T1, unsigned_integral T2>
 constexpr auto operator|(Bits<T1> lhs, Bits<T2> rhs) noexcept -> Bits<details::larger_t<T1, T2>> {
   using result_type = details::larger_t<T1, T2>;
-  return result_type{lhs.raw | rhs.raw};
+  return static_cast<result_type>(lhs.raw | rhs.raw);
 }
 template <unsigned_integral T1, unsigned_integral T2>
 constexpr auto operator^(Bits<T1> lhs, Bits<T2> rhs) noexcept -> Bits<details::larger_t<T1, T2>> {
   using result_type = details::larger_t<T1, T2>;
-  return result_type{lhs.raw ^ rhs.raw};
+  return static_cast<result_type>(lhs.raw ^ rhs.raw);
 }
 template <unsigned_integral T1, unsigned_integral T2>
 constexpr bool operator==(Bits<T1> lhs, Bits<T2> rhs) noexcept {
