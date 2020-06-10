@@ -43,31 +43,31 @@ TEST_CASE("Test expand type trait") {
 TEST_CASE("Compile time construction") {
   using namespace river::bits;
   CHECK(std::is_same_v<Bits<std::uint8_t> const, decltype(bits_8)>);
-  CHECK(bits_8.raw == std::numeric_limits<std::uint8_t>::max());
+  CHECK(bits_8.value == std::numeric_limits<std::uint8_t>::max());
 
   CHECK(std::is_same_v<Bits<std::uint16_t> const, decltype(bits_16)>);
-  CHECK(bits_16.raw == std::numeric_limits<std::uint16_t>::max());
+  CHECK(bits_16.value == std::numeric_limits<std::uint16_t>::max());
 
   CHECK(std::is_same_v<Bits<std::uint32_t> const, decltype(bits_32)>);
-  CHECK(bits_32.raw == std::numeric_limits<std::uint32_t>::max());
+  CHECK(bits_32.value == std::numeric_limits<std::uint32_t>::max());
 
   CHECK(std::is_same_v<Bits<std::uint64_t> const, decltype(bits_64)>);
-  CHECK(bits_64.raw == std::numeric_limits<std::uint64_t>::max());
+  CHECK(bits_64.value == std::numeric_limits<std::uint64_t>::max());
 }
 
 TEST_CASE("Compile time shifting") {
   using namespace river::bits;
   constexpr std::uint8_t max_8 = std::numeric_limits<std::uint8_t>::max();
   CHECK(std::is_same_v<Bits<std::uint8_t>, decltype(bits_8.lsh<0>())>);
-  CHECK(bits_8.lsh<0>().raw == max_8);
+  CHECK(bits_8.lsh<0>().value == max_8);
   CHECK(std::is_same_v<Bits<std::uint16_t>, decltype(bits_8.lsh<1>())>);
-  CHECK(bits_8.lsh<1>().raw == std::uint16_t{max_8} * 2);
+  CHECK(bits_8.lsh<1>().value == std::uint16_t{max_8} * 2);
   CHECK(std::is_same_v<Bits<std::uint16_t>, decltype(bits_8.lsh<8>())>);
-  CHECK(bits_8.lsh<8>().raw == std::uint16_t{max_8} * 256);
+  CHECK(bits_8.lsh<8>().value == std::uint16_t{max_8} * 256);
   CHECK(std::is_same_v<Bits<std::uint32_t>, decltype(bits_8.lsh<16>())>);
-  CHECK(bits_8.lsh<16>().raw == std::uint32_t{max_8} * 65536);
+  CHECK(bits_8.lsh<16>().value == std::uint32_t{max_8} * 65536);
   CHECK(std::is_same_v<Bits<std::uint64_t>, decltype(bits_8.lsh<32>())>);
-  CHECK(bits_8.lsh<32>().raw == std::uint64_t{max_8} * 4294967296);
+  CHECK(bits_8.lsh<32>().value == std::uint64_t{max_8} * 4294967296);
 }
 
 TEST_CASE("Run time operators") {
