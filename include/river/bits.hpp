@@ -91,7 +91,7 @@ struct MaskedBits : Bits<T> {
   constexpr auto set(T source) const noexcept -> Bits<T> {
     auto const self = *this;
 
-    return Bits(source) & ~mask | self & mask;
+    return (Bits(source) & ~mask) | (self & mask);
   }
 
   static constexpr auto masked_value(Bits<T> source) noexcept -> Bits<T> {
